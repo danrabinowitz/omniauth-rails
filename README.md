@@ -1,5 +1,7 @@
 # Omniauth::Rails
-Short description and motivation.
+A Rails Engine to make it as easy as possible to add oauth authentication to a Rails app.
+
+Authorization is handled separately.
 
 ## Usage
 How to use my plugin.
