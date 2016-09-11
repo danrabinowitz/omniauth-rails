@@ -3,3 +3,5 @@ log/*.log
 pkg/
 spec/test_app/log/*.log
 spec/test_app/tmp/
+/spec/examples.txt
+/coverage/

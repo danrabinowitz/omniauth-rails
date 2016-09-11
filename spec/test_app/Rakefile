@@ -4,3 +4,8 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+
+task("spec").clear
+RSpec::Core::RakeTask.new do |t|
+  t.verbose = false
+end

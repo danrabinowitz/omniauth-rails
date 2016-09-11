@@ -26,6 +26,7 @@ require 'rspec/core'
 require 'rspec/core/rake_task'
 
 desc "Run all specs in spec directory (excluding plugin specs)"
+task("spec").clear
 RSpec::Core::RakeTask.new do |t|
   t.verbose = false
 end
