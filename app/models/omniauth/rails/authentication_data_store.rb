@@ -1,7 +1,8 @@
+# frozen_string_literal: true
 module Omniauth
   module Rails
     class AuthenticationDataStore
-      SCOPE = "OmniauthRailsAuthData".freeze
+      SCOPE = "OmniauthRailsAuthData"
 
       def initialize(session)
         @session = session

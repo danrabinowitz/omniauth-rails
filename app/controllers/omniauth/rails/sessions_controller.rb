@@ -1,7 +1,7 @@
+# frozen_string_literal: true
 module Omniauth
   module Rails
     class SessionsController < ApplicationController
-
       # GET /sign_in
       def new
         # TODO: Maybe store some kind of "return_to" url. Maybe in a session.

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-$LOAD_PATH.unshift File.expand_path('../../', __FILE__)
+$LOAD_PATH.unshift File.expand_path("../../", __FILE__)
 require "rails_helper"
 
 RSpec.describe Omniauth::Rails::SessionsController do
@@ -36,7 +36,7 @@ RSpec.describe Omniauth::Rails::SessionsController do
         get "/auth/google_oauth2/callback"
         expect(response).to redirect_to("/auth/failure?message=invalid_credentials&strategy=google_oauth2")
       end
-    end    
+    end
 
     context "a valid auth response" do
       it "redirects to /" do

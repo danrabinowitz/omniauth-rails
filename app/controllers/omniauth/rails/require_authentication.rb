@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Omniauth
   module Rails
     module RequireAuthentication
@@ -10,9 +11,7 @@ module Omniauth
       private
 
       def require_authentication
-        if authentication_required? && !authenticated?
-          redirect_to omniauth_rails.sign_in_url
-        end
+        redirect_to omniauth_rails.sign_in_url if authentication_required? && !authenticated?
       end
 
       def authentication_required?

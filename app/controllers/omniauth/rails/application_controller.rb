@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Omniauth
   module Rails
     class ApplicationController < ActionController::Base

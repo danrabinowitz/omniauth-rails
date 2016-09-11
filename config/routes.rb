@@ -1,4 +1,5 @@
+# frozen_string_literal: true
 Omniauth::Rails::Engine.routes.draw do
-  get '/sign_in', to: 'sessions#new', as: :sign_in
-  get '/:provider/callback', to: 'sessions#create'
+  get "/sign_in", to: "sessions#new", as: :sign_in
+  get "/:provider/callback", to: "sessions#create"
 end

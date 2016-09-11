@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 # TODO: Move this into the spec/ directory. It is not part of the Rails engine.
-require 'dotenv'
+require "dotenv"
 Dotenv.load
 
 Rails.application.config.middleware.use OmniAuth::Builder do
@@ -9,7 +10,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   }
 
   provider :google_oauth2, config[:client_id], config[:client_secret],
-    {:access_type => 'online', :approval_prompt => 'auto'}
+           access_type: "online", approval_prompt: "auto"
 end
 
 OmniAuth.config.logger = Rails.logger

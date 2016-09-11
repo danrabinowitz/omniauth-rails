@@ -1,16 +1,18 @@
+# frozen_string_literal: true
 module Omniauth
   module Rails
     class AuthenticationData
-      EMAIL_KEY = "email".freeze
+      EMAIL_KEY = "email"
 
-      # TODO: Refactor this. Maybe it needs a AuthenticationRequest, AuthenticationSession, and AuthenticationData
+      # TODO: Refactor this. Maybe it needs a AuthenticationRequest, AuthenticationSession,
+      # and AuthenticationData
 
       def self.from_request(request)
-        self.new(email: request.env['omniauth.auth'].info.email)
+        new(email: request.env["omniauth.auth"].info.email)
       end
 
       def self.from_session(session)
-        self.new(email: AuthenticationDataStore.new(session).get(EMAIL_KEY))
+        new(email: AuthenticationDataStore.new(session).get(EMAIL_KEY))
       end
 
       def initialize(email:)
