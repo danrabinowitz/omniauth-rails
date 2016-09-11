@@ -21,6 +21,8 @@
 require "simplecov"
 require "byebug"
 require "awesome_print" # Useful for debugging
+require "dotenv"
+Dotenv.load
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

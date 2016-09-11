@@ -9,6 +9,7 @@ require "rspec/rails"
 
 require "omniauth/rails/test/controller_helpers"
 require "omniauth/rails/test/request_helpers"
+OmniAuth.config.test_mode = true
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
