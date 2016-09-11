@@ -11,6 +11,20 @@ RSpec.describe Omniauth::Rails::SessionsController do
     end
   end
 
+  describe "#destroy" do
+    context "an authenticated user" do
+      before do
+        sign_in("foo@bar.com")
+      end
+
+      it "logs the user out" do
+        expect(authenticated?).to eq(true)
+        delete "/auth/sign_out"
+        expect(authenticated?).to eq(false)
+      end
+    end
+  end
+
   describe "#create" do
     context "a response with invalid CSRF" do
       around(:each) do |example|

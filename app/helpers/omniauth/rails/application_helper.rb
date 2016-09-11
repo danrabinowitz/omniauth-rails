@@ -2,12 +2,14 @@
 module Omniauth
   module Rails
     module ApplicationHelper
-      def authenticated?
-        AuthenticationData.from_session(session).email.present?
-      end
+      delegate :authenticated?, to: :authentication_session
 
       def current_user
-        AuthenticationData.from_session(session).email
+        authentication_session.email
+      end
+
+      def authentication_session
+        AuthenticationSession.new(session)
       end
     end
   end

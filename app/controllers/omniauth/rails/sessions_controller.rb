@@ -9,6 +9,19 @@ module Omniauth
         redirect_to omniauth_route
       end
 
+      # DELETE /sign_out
+      def destroy
+        authentication_session.reset
+
+        if url_to_return_to_after_sign_out.present?
+          redirect_to url_to_return_to_after_sign_out
+        else
+          render html: "<div class='notification'>your have been logged out " \
+                       "click <a href='#{omniauth_rails.sign_in_url}' " \
+                       "target='_self'>here</a> to log back in</div>"
+        end
+      end
+
       # GET /:provider/callback
       def create
         persist_authentication_data
@@ -26,7 +39,20 @@ module Omniauth
       end
 
       def persist_authentication_data
-        AuthenticationData.from_request(request).persist(session)
+        authentication_request.persist(authentication_session)
+      end
+
+      def url_to_return_to_after_sign_out
+        nil
+      end
+
+      def authentication_request
+        AuthenticationRequest.new(request)
+      end
+
+      # TODO: This is duplicated in ApplicationHelper
+      def authentication_session
+        AuthenticationSession.new(session)
       end
     end
   end

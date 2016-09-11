@@ -19,6 +19,10 @@ module Omniauth
         session[SCOPE][key] = value
       end
 
+      def reset
+        session[SCOPE] = {}
+      end
+
       private
 
       attr_reader :session

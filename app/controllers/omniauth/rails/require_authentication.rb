@@ -18,8 +18,14 @@ module Omniauth
         true
       end
 
+      # TODO: This is duplicated in ApplicationHelper
       def authenticated?
-        AuthenticationData.from_session(session).email.present?
+        authentication_session.authenticated?
+      end
+
+      # TODO: This is duplicated in ApplicationHelper
+      def authentication_session
+        AuthenticationSession.new(session)
       end
     end
   end
