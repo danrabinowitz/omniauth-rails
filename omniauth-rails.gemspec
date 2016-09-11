@@ -25,4 +25,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "simplecov-console"
 
   s.add_dependency "rails", "~> 5.0.0", ">= 5.0.0.1"
+  s.add_dependency "omniauth"
+  # TODO: Make the dependency on omniauth-google-oauth2 optional
+  s.add_dependency "omniauth-google-oauth2"
 end

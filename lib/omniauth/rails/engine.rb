@@ -1,6 +1,8 @@
 module Omniauth
   module Rails
     class Engine < ::Rails::Engine
+      require 'omniauth'
+      require 'omniauth-google-oauth2'
       isolate_namespace Omniauth::Rails
 
       config.generators do |g|

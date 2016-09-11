@@ -1,5 +1,6 @@
 .bundle/
 log/*.log
+/tmp
 pkg/
 spec/test_app/log/*.log
 spec/test_app/tmp/

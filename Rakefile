@@ -31,4 +31,11 @@ RSpec::Core::RakeTask.new do |t|
   t.verbose = false
 end
 
-task :default => :spec
+require "rubocop/rake_task"
+desc "Run RuboCop"
+RuboCop::RakeTask.new(:rubocop) do |tsk|
+  tsk.fail_on_error = true
+  tsk.options = ["-DR", "--format=html", "--out=tmp/rubocop.html", "--format=progress"]
+end
+
+task default: [:spec, :rubocop]
