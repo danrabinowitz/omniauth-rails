@@ -15,3 +15,4 @@ end
 
 OmniAuth.config.logger = Rails.logger
 OmniAuth.config.test_mode = true
+# OmniAuth.config.path_prefix = "/auth"
