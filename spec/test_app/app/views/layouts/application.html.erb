@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>TestApp</title>
+    <%= stylesheet_link_tag "omniauth/rails/application.css", media: "all" %>
     <%= csrf_meta_tags %>
   </head>
 
@@ -12,15 +13,11 @@
       <li><%= link_to "Private page", private_path %></li>
     </ul>
 
-    <%# if session['ls_auth_user'] %>
     <% if authenticated? %>
-        <!-- Logged in as <%= session['ls_auth_user'] %> | <a href="/auth/sign_out">Logout</a></div> -->
-        Logged in as <%= current_user %> | 
-        <%#= link_to "Logout", sign_out_path %>
-        <a href="/auth/sign_out">Logout</a>
-        </div>
+        Logged in as <%= current_user %>
+        |
+        <%= button_to "Logout", omniauth_rails.sign_out_url, method: :delete, class: "foo" %>
     <% end %>
-
 
     <%= yield %>
   </body>

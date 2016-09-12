@@ -16,9 +16,7 @@ module Omniauth
         if url_to_return_to_after_sign_out.present?
           redirect_to url_to_return_to_after_sign_out
         else
-          render html: "<div class='notification'>your have been logged out " \
-                       "click <a href='#{omniauth_rails.sign_in_url}' " \
-                       "target='_self'>here</a> to log back in</div>"
+          render layout: false
         end
       end
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-config_hash = YAML.load_file(Rails.root.join("config/omniauth_rails.yml"))[Rails.env]
+config_hash = YAML.load(ERB.new(File.read("#{Rails.root}/config/omniauth_rails.yml")).result)[Rails.env]
 
 OmniAuth.config.logger = Rails.logger
 # OmniAuth.config.path_prefix = "/auth"
@@ -16,7 +16,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 
         provider(:google_oauth2, provider_config["client_id"], provider_config["client_secret"],
                  access_type: "online", approval_prompt: "auto")
-
       else
         raise "#{provider} is not currently handled by omniauth_rails."
       end

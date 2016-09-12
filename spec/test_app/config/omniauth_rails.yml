@@ -1,8 +1,8 @@
 development:
   providers:
     google_oauth2:
-      client_id: 1
-      client_secret: 2
+      client_id: <%= ENV["CLIENT_ID"] %>
+      client_secret: <%= ENV["CLIENT_SECRET"] %>
 test:
   providers:
     google_oauth2:

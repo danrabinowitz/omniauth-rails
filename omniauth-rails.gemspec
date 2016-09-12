@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "awesome_print" # Useful for debugging
   s.add_development_dependency "simplecov"
   s.add_development_dependency "simplecov-console"
-  s.add_development_dependency "dotenv"
+  s.add_development_dependency "dotenv-rails"
 
   s.add_dependency "rails", "~> 5.0.0", ">= 5.0.0.1"
   s.add_dependency "omniauth"

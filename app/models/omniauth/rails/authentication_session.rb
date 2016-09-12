@@ -4,6 +4,9 @@ module Omniauth
     class AuthenticationSession
       EMAIL_KEY = "email"
 
+      # TODO: Add a way to store a timestamp of when we logged in, and
+      # a way to logout via timeout.
+
       def initialize(session)
         @session = session
       end
