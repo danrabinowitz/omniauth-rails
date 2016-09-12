@@ -53,9 +53,9 @@ RSpec.describe Omniauth::Rails::SessionsController do
     end
 
     context "a valid auth response" do
-      it "redirects to /" do
+      it "redirects to Configuration.authenticated_root" do
         get "/auth/google_oauth2/callback"
-        expect(response).to redirect_to("/")
+        expect(response).to redirect_to(Omniauth::Rails::Configuration.authenticated_root)
       end
     end
   end

@@ -44,9 +44,8 @@ module Omniauth
         authentication_request.persist(authentication_session)
       end
 
-      # TODO: Make this a configuration parameter
       def url_to_return_to_after_sign_out
-        nil
+        Configuration.unauthenticated_root
       end
 
       # TODO: This is duplicated in ApplicationHelper

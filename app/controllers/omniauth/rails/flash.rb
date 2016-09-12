@@ -38,9 +38,8 @@ module Omniauth
         false
       end
 
-      # TODO: Make this a configuration option
       def default_url_to_return_to_after_authentication
-        "/"
+        Configuration.authenticated_root
       end
     end
   end

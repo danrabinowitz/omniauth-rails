@@ -28,9 +28,8 @@ end
 if config_hash["session_duration_in_seconds"].present?
   Omniauth::Rails::Configuration.session_duration = config_hash["session_duration_in_seconds"].seconds
 end
-if config_hash["authenticated_root"].present?
-  Omniauth::Rails::Configuration.authenticated_root = config_hash["authenticated_root"]
-end
-if config_hash["unauthenticated_root"].present?
-  Omniauth::Rails::Configuration.unauthenticated_root = config_hash["unauthenticated_root"]
-end
+
+raise "authenticated_root is required" if config_hash["authenticated_root"].blank?
+Omniauth::Rails::Configuration.authenticated_root = config_hash["authenticated_root"]
+raise "unauthenticated_root is required" if config_hash["unauthenticated_root"].blank?
+Omniauth::Rails::Configuration.unauthenticated_root = config_hash["unauthenticated_root"]
