@@ -8,6 +8,7 @@ module Omniauth
 
       def persist(authentication_session)
         authentication_session.email = email
+        authentication_session.expire_in(session_duration)
       end
 
       private
@@ -16,6 +17,11 @@ module Omniauth
 
       def email
         request.env["omniauth.auth"].info.email
+      end
+
+      def session_duration
+        # TODO: Make this configurable
+        5.seconds
       end
     end
   end
