@@ -5,6 +5,7 @@ module Omniauth
       extend ActiveSupport::Concern
 
       included do
+        include Omniauth::Rails::ApplicationHelper
         before_action :require_authentication
       end
 
@@ -19,16 +20,6 @@ module Omniauth
 
       def authentication_required?
         true
-      end
-
-      # TODO: This is duplicated in ApplicationHelper
-      def authenticated?
-        authentication_session.authenticated?
-      end
-
-      # TODO: This is duplicated in ApplicationHelper
-      def authentication_session
-        AuthenticationSession.new(session)
       end
     end
   end

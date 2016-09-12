@@ -9,6 +9,17 @@ RSpec.describe Omniauth::Rails::SessionsController do
       get "/auth/sign_in"
       expect(response).to redirect_to("/auth/google_oauth2")
     end
+
+    context "an authenticated user" do
+      before do
+        sign_in("foo@bar.com")
+      end
+
+      it "redirects directly to the authenticated_root" do
+        get "/auth/sign_in"
+        expect(response).to redirect_to(Omniauth::Rails::Configuration.authenticated_root)
+      end
+    end
   end
 
   describe "#destroy" do

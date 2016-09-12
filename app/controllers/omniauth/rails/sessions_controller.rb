@@ -2,6 +2,7 @@
 module Omniauth
   module Rails
     class SessionsController < ApplicationController
+      include Omniauth::Rails::ApplicationHelper
       include Omniauth::Rails::Flash
 
       # GET /sign_in
@@ -11,17 +12,19 @@ module Omniauth
 
         # If we are already authenticated, do not attempt to authenticate again.
         # Instead, redirect to where we would go after authentication
-        redirect_to flash[:url_to_return_to_after_authentication] and return if authenticated?
-
-        redirect_to omniauth_route
+        if authenticated?
+          redirect_to flash[:url_to_return_to_after_authentication]
+        else
+          redirect_to omniauth_route
+        end
       end
 
       # DELETE /sign_out
       def destroy
         authentication_session.reset
 
-        if url_to_return_to_after_sign_out.present?
-          redirect_to url_to_return_to_after_sign_out
+        if Configuration.unauthenticated_root.present?
+          redirect_to Configuration.unauthenticated_root
         else
           render layout: false
         end
@@ -44,22 +47,8 @@ module Omniauth
         authentication_request.persist(authentication_session)
       end
 
-      def url_to_return_to_after_sign_out
-        Configuration.unauthenticated_root
-      end
-
-      # TODO: This is duplicated in ApplicationHelper
-      def authenticated?
-        authentication_session.authenticated?
-      end
-
       def authentication_request
         AuthenticationRequest.new(request)
-      end
-
-      # TODO: This is duplicated in ApplicationHelper
-      def authentication_session
-        AuthenticationSession.new(session)
       end
     end
   end
