@@ -3,6 +3,8 @@
 config_hash = YAML.load(ERB.new(File.read("#{Rails.root}/config/omniauth_rails.yml")).result)[Rails.env]
 
 OmniAuth.config.logger = Rails.logger
+
+# TODO
 # OmniAuth.config.path_prefix = "/auth"
 
 Rails.application.config.middleware.use OmniAuth::Builder do
@@ -21,4 +23,14 @@ Rails.application.config.middleware.use OmniAuth::Builder do
       end
     end
   end
+end
+
+if config_hash["session_duration_in_seconds"].present?
+  Omniauth::Rails::Configuration.session_duration = config_hash["session_duration_in_seconds"].seconds
+end
+if config_hash["authenticated_root"].present?
+  Omniauth::Rails::Configuration.authenticated_root = config_hash["authenticated_root"]
+end
+if config_hash["unauthenticated_root"].present?
+  Omniauth::Rails::Configuration.unauthenticated_root = config_hash["unauthenticated_root"]
 end

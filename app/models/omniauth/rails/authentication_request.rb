@@ -10,6 +10,7 @@ module Omniauth
         # TODO: Store the provider in the session
         authentication_session.email = email
         authentication_session.expire_in(session_duration)
+        puts "session_duration:     ---> #{session_duration}"
       end
 
       private
@@ -21,8 +22,7 @@ module Omniauth
       end
 
       def session_duration
-        # TODO: Make this configurable
-        5.seconds
+        Configuration.session_duration
       end
     end
   end

@@ -3,8 +3,14 @@ development:
     google_oauth2:
       client_id: <%= ENV["CLIENT_ID"] %>
       client_secret: <%= ENV["CLIENT_SECRET"] %>
+  authenticated_root: "/private"
+  unauthenticated_root: "/public"
+  session_duration_in_seconds: 5 # The default is 3600 (which is 1 hour)
 test:
   providers:
     google_oauth2:
       client_id: 1
       client_secret: 2
+  authenticated_root: "/private"
+  unauthenticated_root: "/public"
+  session_duration_in_seconds: 5 # The default is 3600 (which is 1 hour)
