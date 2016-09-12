@@ -14,7 +14,7 @@
     </ul>
 
     <% if authenticated? %>
-        Logged in as <%= current_user %>
+        Logged in as <%= authenticated_email %>
         |
         <%= button_to "Logout", omniauth_rails.sign_out_url, method: :delete %>
     <% end %>

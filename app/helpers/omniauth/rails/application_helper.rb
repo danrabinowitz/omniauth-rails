@@ -4,7 +4,7 @@ module Omniauth
     module ApplicationHelper
       delegate :authenticated?, to: :authentication_session
 
-      def current_user
+      def authenticated_email
         authentication_session.email
       end
 
