@@ -76,5 +76,9 @@ Bottom line: There's usually no reason to have a logout button when using Omniau
 ## Contributing
 PRs are welcome!
 
+## Credit
+Thanks to [Paul De Goes](https://github.com/pauldegoes) for the idea for this gem. He
+built a similar gem for internal use at LivingSocial.
+
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
