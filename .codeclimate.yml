@@ -20,7 +20,11 @@ engines:
     enabled: true
 ratings:
   paths:
+  - Gemfile
   - Gemfile.lock
+  - Rakefile
+  - "*.gemspec"
+  - "bin/rails"
   - "**.erb"
   - "**.haml"
   - "**.rb"
@@ -36,3 +40,5 @@ ratings:
 exclude_paths:
 - config/
 - spec/
+- "MIT-LICENSE"
+- "README.md"
