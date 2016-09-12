@@ -6,6 +6,7 @@ development:
   authenticated_root: "/private"
   unauthenticated_root: "/public"
   session_duration_in_seconds: 5 # The default is 3600 (which is 1 hour)
+  # autoload_in_application_controller: true # The default is true
 test:
   providers:
     google_oauth2:
@@ -14,3 +15,4 @@ test:
   authenticated_root: "/private"
   unauthenticated_root: "/public"
   session_duration_in_seconds: 5 # The default is 3600 (which is 1 hour)
+  # autoload_in_application_controller: true # The default is true

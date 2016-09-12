@@ -9,6 +9,10 @@ module Omniauth
       initializer "omniauth_rails.action_controller" do |_app|
         ActiveSupport.on_load :action_controller do
           helper Omniauth::Rails::ApplicationHelper
+          if Configuration.include_concern_in_application_controller
+            ::Rails.logger.info "Autoloading Omniauth::Rails::ControllersConcern into ActionController::Base"
+            include Omniauth::Rails::ControllersConcern
+          end
         end
       end
 

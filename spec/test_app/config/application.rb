@@ -12,6 +12,7 @@ require "action_view/railtie"
 require "sprockets/railtie"
 
 Bundler.require(*Rails.groups)
+
 require "omniauth/rails"
 
 module TestApp

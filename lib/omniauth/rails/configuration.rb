@@ -2,7 +2,10 @@
 module Omniauth
   module Rails
     class Configuration
-      ATTRIBUTES = %i(authenticated_root unauthenticated_root session_duration logger).freeze
+      ATTRIBUTES = %i(
+        authenticated_root include_concern_in_application_controller
+        unauthenticated_root session_duration logger
+      ).freeze
 
       @session_duration = 1.hour
       @logger = ::Rails.logger
