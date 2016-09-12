@@ -1,5 +1,9 @@
 # Omniauth::Rails
+
+[![Gem Version](https://badge.fury.io/rb/omniauth-rails.svg)](https://badge.fury.io/rb/omniauth-rails)
+
 A Rails Engine to make it as easy as possible to add oauth authentication to a Rails app.
+
 
 The canonical use case is this:
 You build a simple Rails app for your company. It is for internal use only. Your company uses Google Apps for gmail.
@@ -13,6 +17,8 @@ OmniAuth::Rails makes it as easy as possible to create an admin site. See Usage,
 Authorization is handled separately.
 
 ## TODO
+
+* Make it easier to enable/disable authorization/authentication.
 
 * Add a "dev mode" override which simply skips all authentication.
 
