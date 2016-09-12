@@ -2,6 +2,8 @@
 
 [![Gem Version](https://badge.fury.io/rb/omniauth-rails.svg)](https://badge.fury.io/rb/omniauth-rails)
 [![Code Climate](https://codeclimate.com/github/danrabinowitz/omniauth-rails/badges/gpa.svg)](https://codeclimate.com/github/danrabinowitz/omniauth-rails)
+[![Build Status](https://travis-ci.org/danrabinowitz/omniauth-rails.svg?branch=master)](https://travis-ci.org/danrabinowitz/omniauth-rails)
+
 
 A Rails Engine to make it as easy as possible to add oauth authentication to a Rails app.
 
