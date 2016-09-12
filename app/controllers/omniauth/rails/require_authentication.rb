@@ -11,7 +11,10 @@ module Omniauth
       private
 
       def require_authentication
-        redirect_to omniauth_rails.sign_in_url if authentication_required? && !authenticated?
+        if authentication_required? && !authenticated?
+          flash[:url_to_return_to_after_authentication] = request.original_url
+          redirect_to omniauth_rails.sign_in_url
+        end
       end
 
       def authentication_required?

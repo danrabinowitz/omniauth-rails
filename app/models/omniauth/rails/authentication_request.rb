@@ -7,6 +7,7 @@ module Omniauth
       end
 
       def persist(authentication_session)
+        # TODO: Store the provider in the session
         authentication_session.email = email
         authentication_session.expire_in(session_duration)
       end

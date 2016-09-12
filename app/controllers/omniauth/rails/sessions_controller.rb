@@ -2,10 +2,17 @@
 module Omniauth
   module Rails
     class SessionsController < ApplicationController
+      include Omniauth::Rails::Flash
+
       # GET /sign_in
       def new
-        # TODO: Maybe store some kind of "return_to" url. Maybe in a session.
-        # TODO: Do we need to clear the session first?
+        # Set a flash variable, so we know where to go after a successful authentication.
+        set_url_to_return_to_after_authentication
+
+        # If we are already authenticated, do not attempt to authenticate again.
+        # Instead, redirect to where we would go after authentication
+        redirect_to flash[:url_to_return_to_after_authentication] and return if authenticated?
+
         redirect_to omniauth_route
       end
 
@@ -23,7 +30,8 @@ module Omniauth
       # GET /:provider/callback
       def create
         persist_authentication_data
-        redirect_to url_to_return_to_after_authentication
+        redirect_to flash[:url_to_return_to_after_authentication] ||
+                    default_url_to_return_to_after_authentication
       end
 
       private
@@ -32,16 +40,18 @@ module Omniauth
         OmniAuthRouteBuilder.new.route
       end
 
-      def url_to_return_to_after_authentication
-        "/"
-      end
-
       def persist_authentication_data
         authentication_request.persist(authentication_session)
       end
 
+      # TODO: Make this a configuration parameter
       def url_to_return_to_after_sign_out
         nil
+      end
+
+      # TODO: This is duplicated in ApplicationHelper
+      def authenticated?
+        authentication_session.authenticated?
       end
 
       def authentication_request
