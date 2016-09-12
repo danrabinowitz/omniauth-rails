@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 module Omniauth
   module Rails
-    module RequireAuthorization
+    module AuthorizationConcern
       def self.included(klass)
-        klass.include Omniauth::Rails::RequireAuthentication
         klass.extend ClassMethods
       end
 
@@ -19,13 +18,19 @@ module Omniauth
       protected
 
       def require_authorization(params)
-        redirect_to_sign_in_url unless authorized?(params)
+        require_authentication # Require authentication before authorization.
+        return if performed?
+        render_403_forbidden unless authorized?(params)
       end
 
       private
 
       def authorized?(params)
         AuthorizationChecker.new(email: authenticated_email, params: params).authorized?
+      end
+
+      def render_403_forbidden
+        render "omniauth/rails/forbidden", status: :forbidden, layout: false
       end
     end
   end

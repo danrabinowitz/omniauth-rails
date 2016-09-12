@@ -1,19 +1,17 @@
 # frozen_string_literal: true
 module Omniauth
   module Rails
-    module RequireAuthentication
+    module AuthenticationConcern
       extend ActiveSupport::Concern
 
       included do
         include Omniauth::Rails::ApplicationHelper
-
-        # TODO: Do not add this before_action in dev_mode
-        before_action :require_authentication
       end
 
       private
 
       def require_authentication
+        # TODO: Do not add this before_action in dev_mode
         redirect_to_sign_in_url unless authenticated?
       end
 

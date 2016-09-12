@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class PrivateController < ApplicationController
-  include Omniauth::Rails::RequireAuthorization
+  # TODO: Automatically include this concern in ApplicationController, based on a config option
+  include Omniauth::Rails::ControllersConcern
   require_authorization domains: %w(bar.com)
 
   def show

@@ -13,13 +13,26 @@ RSpec.describe PrivateController do
     end
 
     context "user is authenticated" do
-      before do
-        sign_in("foo@bar.com")
+      context "user is authorized" do
+        before do
+          sign_in("foo@bar.com")
+        end
+
+        it "responds with a 200" do
+          get "/private"
+          expect(response).to have_http_status(:success)
+        end
       end
 
-      it "responds with a 200" do
-        get "/private"
-        expect(response).to have_http_status(:success)
+      context "not authorized" do
+        before do
+          sign_in("foo@baz.com") # This domain is not in the allowed list of domains.
+        end
+
+        it "responds with a 403:forbidden" do
+          get "/private"
+          expect(response).to have_http_status(:forbidden)
+        end
       end
     end
   end
