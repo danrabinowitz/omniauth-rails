@@ -23,6 +23,7 @@ ratings:
   - Gemfile
   - Gemfile.lock
   - Rakefile
+  - .simplecov
   - "*.gemspec"
   - "bin/rails"
   - "**.erb"
