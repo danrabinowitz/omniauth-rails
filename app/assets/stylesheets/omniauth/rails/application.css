@@ -2,8 +2,9 @@ form.button_to {
   display: inline;
   margin: 0;
   padding: 0;
-  div { display: inline; }
-  input[type=submit] {
+}
+form.button_to div { display: inline; }
+form.button_to input[type=submit] {
     margin: 0;
     padding: 0;
     -webkit-appearance: caret;
