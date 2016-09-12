@@ -14,8 +14,6 @@ Authorization is handled separately.
 
 ## TODO
 
-* Improve code coverage
-
 * Add basic Authorization. And maybe a "dev mode" override which simply skips all authentication.
 
 * Search for "TODO" in the code.

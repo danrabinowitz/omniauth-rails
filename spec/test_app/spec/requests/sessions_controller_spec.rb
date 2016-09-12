@@ -22,6 +22,20 @@ RSpec.describe Omniauth::Rails::SessionsController do
         delete "/auth/sign_out"
         expect(authenticated?).to eq(false)
       end
+
+      context "unauthenticated_root is blank" do
+        around(:each) do |example|
+          original_value = Omniauth::Rails::Configuration.unauthenticated_root
+          Omniauth::Rails::Configuration.unauthenticated_root = nil
+          example.run
+          Omniauth::Rails::Configuration.unauthenticated_root = original_value
+        end
+
+        it "renders some html saying you have been logged out" do
+          delete "/auth/sign_out"
+          expect(response).to have_http_status(:success)
+        end
+      end
     end
   end
 
