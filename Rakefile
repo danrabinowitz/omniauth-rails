@@ -17,6 +17,7 @@ end
 
 APP_RAKEFILE = File.expand_path("../spec/test_app/Rakefile", __FILE__)
 load "rails/tasks/engine.rake"
+Rails.application.load_tasks
 
 load "rails/tasks/statistics.rake"
 

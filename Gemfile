@@ -16,3 +16,4 @@ gemspec
 gem "overcommit"
 
 gem "codeclimate-test-reporter", group: :test, require: nil
+gem "mutant-rspec"

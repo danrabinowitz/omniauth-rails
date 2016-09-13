@@ -22,6 +22,7 @@ Authorization is handled separately.
 ## TODO
 
 * Search for "TODO" in the code.
+* Run ```rake mutant``` and add all the specs.
 
 ## Usage
 
@@ -68,6 +69,13 @@ but the browser is still logged in to the provider, which has granted access to 
 (generally) with no expiration. So logging back in requires no credentials.
 
 Bottom line: There's usually no reason to have a logout button when using Omniauth::Rails
+
+## Mutation Testing
+
+Run ```rake mutant```
+The output will appear on STDOUT and also in coverage/mutant.out
+
+More info on reading the reports is here: https://github.com/mbj/mutant#reading-reports
 
 ## Contributing
 PRs are welcome!
