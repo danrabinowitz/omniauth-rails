@@ -19,11 +19,6 @@ OmniAuth::Rails makes it as easy as possible to create an admin site. See Usage,
 
 Authorization is handled separately.
 
-## TODO
-
-* Add a new AuthorizationType for groups of email addresses
-* Run ```rake mutant``` and add all the specs.
-
 ## Usage
 
 1. Add the gem to your Gemfile
@@ -38,7 +33,6 @@ development:
       client_secret: <%= ENV["CLIENT_SECRET"] %>
   authenticated_root: "/private"
   unauthenticated_root: "/public"
-  session_duration_in_seconds: 5 # The default is 3600 (which is 1 hour)
 test:
   providers:
     google_oauth2:
@@ -46,7 +40,6 @@ test:
       client_secret: 2
   authenticated_root: "/private"
   unauthenticated_root: "/public"
-  session_duration_in_seconds: 5 # The default is 3600 (which is 1 hour)
 production:
   providers:
     google_oauth2:
@@ -54,13 +47,13 @@ production:
       client_secret: <%= ENV["CLIENT_SECRET"] %>
   authenticated_root: "/private"
   unauthenticated_root: "/public"
-  session_duration_in_seconds: 3600 # The default is 3600 (which is 1 hour)
+```
+3. In any controllers which you want to protect (such as an admin controller), add this line:
+```ruby
+require_authorization domains: %w(mydomain.com)
 ```
 
-3. In any controllers which require authentication, add this line:
-```ruby
-include Omniauth::Rails::RequireAuthentication
-```
+That's it. Now anyone trying to hit one of those controllers will only be blocked if they are not authorized.
 
 ## Additional configuration
 
@@ -106,6 +99,11 @@ More info on reading the reports is here: https://github.com/mbj/mutant#reading-
 
 ## Contributing
 PRs are welcome!
+
+### Some things I still want to do
+
+* Add a new AuthorizationType for groups of email addresses
+* Run ```rake mutant``` and add all the specs.
 
 ## Credit
 Thanks to [Paul De Goes](https://github.com/pauldegoes) for the idea for this gem. He
