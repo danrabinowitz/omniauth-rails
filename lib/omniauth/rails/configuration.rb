@@ -5,7 +5,7 @@ module Omniauth
       ATTRIBUTES = %i(
         authenticated_root include_concern_in_application_controller
         unauthenticated_root session_duration logger
-        dev_mode
+        dev_mode automount
       ).freeze
 
       @session_duration = 1.hour

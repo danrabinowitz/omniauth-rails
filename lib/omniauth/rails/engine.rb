@@ -16,6 +16,15 @@ module Omniauth
         end
       end
 
+      config.after_initialize do
+        if Configuration.automount
+          ::Rails.logger.info "Mounting Omniauth::Rails::Engine in Rails.application.routes"
+          ::Rails.application.routes.prepend do
+            mount Omniauth::Rails::Engine => OmniAuth.config.path_prefix
+          end
+        end
+      end
+
       config.generators do |g|
         g.test_framework :rspec, fixture: false
         g.assets false

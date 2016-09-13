@@ -28,6 +28,7 @@ module Omniauth
         configure_omni_auth_settings
         configure_providers
 
+        Configuration.automount = automount
         Configuration.authenticated_root = authenticated_root
         Configuration.unauthenticated_root = unauthenticated_root
         Configuration.include_concern_in_application_controller = include_concern_in_application_controller
@@ -62,6 +63,10 @@ module Omniauth
 
       def dev_mode_allowed?
         ::Rails.env.development?
+      end
+
+      def automount
+        data["automount"] != false
       end
 
       def path_prefix

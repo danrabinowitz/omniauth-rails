@@ -63,6 +63,33 @@ production:
 include Omniauth::Rails::RequireAuthentication
 ```
 
+## Additional configuration
+
+### Automount
+By default, Omniauth::Rails sets automount to true. You can override this in the omniauth_rails.yml configuration file.
+
+When automount is true (the default), the engine's routes are mounted in the host application's routes.
+
+When automount is false, you need to add this line to your routes.rb:
+```ruby
+mount Omniauth::Rails::Engine => OmniAuth.config.path_prefix
+```
+
+### path_prefix
+The default path_prefix for Omniauth is "/auth". In the unlikely event that this
+causes a conflict, it can be changed with the path_prefix configuration parameter.
+
+### autoload_in_application_controller
+The default value of autoload_in_application_controller is true.
+
+When it is true, the controller concerns are automatically included in ActionController::Base.
+
+If there is a conflict in having those methods in all controllers, set autoload_in_application_controller to
+false and manually add this line to any controllers which require authentication or authorization:
+```ruby
+include Omniauth::Rails::ControllersConcern
+```
+
 ## Logging out
 
 In general, there's not much point in "logging out". It wipes the Omniauth::Rails session,
