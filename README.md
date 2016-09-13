@@ -4,6 +4,7 @@
 [![Code Climate](https://codeclimate.com/github/danrabinowitz/omniauth-rails/badges/gpa.svg)](https://codeclimate.com/github/danrabinowitz/omniauth-rails)
 [![Build Status](https://travis-ci.org/danrabinowitz/omniauth-rails.svg?branch=master)](https://travis-ci.org/danrabinowitz/omniauth-rails)
 [![Test Coverage](https://codeclimate.com/github/danrabinowitz/omniauth-rails/badges/coverage.svg)](https://codeclimate.com/github/danrabinowitz/omniauth-rails/coverage)
+[![Gem](https://img.shields.io/gem/dt/omniauth-rails.svg?maxAge=2592000)](https://rubygems.org/gems/omniauth-rails)
 
 A Rails Engine to make it as easy as possible to add oauth authentication to a Rails app.
 
