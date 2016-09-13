@@ -10,6 +10,20 @@ RSpec.describe PrivateController do
         get "/private"
         expect(response).to redirect_to("/auth/sign_in")
       end
+
+      context "dev_mode is enabled" do
+        around(:each) do |example|
+          original_value = Omniauth::Rails::Configuration.dev_mode
+          Omniauth::Rails::Configuration.dev_mode = true
+          example.run
+          Omniauth::Rails::Configuration.dev_mode = original_value
+        end
+
+        it "responds with a 200" do
+          get "/private"
+          expect(response).to have_http_status(:success)
+        end
+      end
     end
 
     context "user is authenticated" do

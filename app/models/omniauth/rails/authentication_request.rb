@@ -7,7 +7,6 @@ module Omniauth
       end
 
       def persist(authentication_session)
-        # TODO: Store the provider in the session
         authentication_session.email = email
         authentication_session.expire_in(session_duration)
       end
@@ -17,7 +16,11 @@ module Omniauth
       attr_reader :request
 
       def email
-        request.env["omniauth.auth"].info.email
+        info.email
+      end
+
+      def info
+        request.env["omniauth.auth"].info
       end
 
       def session_duration

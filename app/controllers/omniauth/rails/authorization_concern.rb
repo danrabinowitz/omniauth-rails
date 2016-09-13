@@ -10,7 +10,6 @@ module Omniauth
         private
 
         def require_authorization(params)
-          # TODO: Do not add this before_action in dev_mode
           before_action { |c| c.require_authorization(params) }
         end
       end
@@ -18,6 +17,11 @@ module Omniauth
       protected
 
       def require_authorization(params)
+        if Configuration.dev_mode
+          ::Rails.logger.info "Omniauth::Rails: dev_mode is enabled. Skipping 'require_authorization'"
+          return
+        end
+
         require_authentication # Require authentication before authorization.
         return if performed?
         render_403_forbidden unless authorized?(params)

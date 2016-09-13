@@ -2,6 +2,8 @@
 module Omniauth
   module Rails
     module Provider
+      # See more info here:
+      # https://github.com/zquestz/omniauth-google-oauth2/blob/master/README.md
       class GoogleOauth2
         def initialize(config)
           @config = config
@@ -9,13 +11,12 @@ module Omniauth
         end
 
         def configure
-          # The block passed to OmniAuth::Builder requires that client_id and client_secret be
-          # instance variables. So we have these two silly-looking lines.
-          client_id = client_id
-          client_secret = client_secret
+          client_id = config["client_id"]
+          client_secret = config["client_secret"]
+          prompt = "none" # none, consent, select_account
           ::Rails.application.config.middleware.use OmniAuth::Builder do
             provider(:google_oauth2, client_id, client_secret,
-                     access_type: "online", approval_prompt: "auto")
+                     access_type: "online", approval_prompt: "auto", prompt: prompt)
           end
         end
 
@@ -24,16 +25,8 @@ module Omniauth
         attr_reader :config
 
         def validate!
-          raise "Provider google_oauth2 requires a client_id" unless client_id
-          raise "Provider google_oauth2 requires a client_secret" unless client_secret
-        end
-
-        def client_id
-          config["client_id"]
-        end
-
-        def client_secret
-          config["client_secret"]
+          raise "Provider google_oauth2 requires a client_id" unless config["client_id"]
+          raise "Provider google_oauth2 requires a client_secret" unless config["client_secret"]
         end
       end
     end

@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require "rails_helper_for_engine"
-require_relative "../../../../../app/models/omniauth/rails/authorization_types/base"
-require_relative "../../../../../app/models/omniauth/rails/authorization_types/regex"
 
 RSpec.describe Omniauth::Rails::AuthorizationTypes::Regex do
   let(:email) { "foo@bar.com" }

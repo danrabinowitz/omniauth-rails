@@ -8,10 +8,22 @@ module Omniauth
         include Omniauth::Rails::ApplicationHelper
       end
 
+      module ClassMethods
+        private
+
+        def require_authentication
+          before_action :require_authentication
+        end
+      end
+
       private
 
       def require_authentication
-        # TODO: Do not add this before_action in dev_mode
+        if Configuration.dev_mode
+          ::Rails.logger.info "Omniauth::Rails: dev_mode is enabled. Skipping 'require_authentication'"
+          return
+        end
+
         redirect_to_sign_in_url unless authenticated?
       end
 

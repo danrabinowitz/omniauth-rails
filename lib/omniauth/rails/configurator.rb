@@ -20,10 +20,11 @@ module Omniauth
 
       def initialize(data)
         @data = data
-        validate!
       end
 
       def configure
+        validate!
+
         OmniAuth.config.logger = ::Rails.logger
         # TODO
         # OmniAuth.config.path_prefix = "/auth"
@@ -34,16 +35,31 @@ module Omniauth
         Configuration.unauthenticated_root = unauthenticated_root
         Configuration.include_concern_in_application_controller = include_concern_in_application_controller
         Configuration.session_duration = session_duration.seconds if session_duration.present?
+        Configuration.dev_mode = dev_mode
       end
 
       private
 
       attr_reader :data
 
+      def dev_mode
+        data["dev_mode"] == true
+      end
+
       def validate!
         REQUIRED_SETTINGS.each do |setting|
           raise "#{setting} is required" unless send(setting).present?
         end
+
+        if dev_mode
+          raise "dev_mode may not be used in #{::Rails.env}" unless dev_mode_allowed?
+          ::Rails.logger.info "Omniauth::Rails: dev_mode is enabled. Authentication and " \
+                              "authorization are disabled."
+        end
+      end
+
+      def dev_mode_allowed?
+        ::Rails.env.development?
       end
 
       def authenticated_root
