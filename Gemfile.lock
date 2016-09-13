@@ -13,7 +13,6 @@ PATH
   specs:
     omniauth-rails (0.1.0)
       omniauth
-      omniauth-google-oauth2
       rails (~> 5.0.0, >= 5.0.0.1)
 
 GEM
@@ -264,6 +263,7 @@ DEPENDENCIES
   codeclimate-test-reporter
   dotenv-rails
   mutant-rspec
+  omniauth-google-oauth2
   omniauth-rails!
   overcommit
   rspec-rails
