@@ -6,7 +6,7 @@ require "rails_helper"
 RSpec.describe Omniauth::Rails::SessionsController do
   describe "#new" do
     it "redirects to the OmniAuth provider endpoint" do
-      get "/auth/sign_in"
+      get "#{OmniAuth.config.path_prefix}/sign_in"
       expect(response).to redirect_to("/auth/google_oauth2")
     end
 
@@ -16,7 +16,7 @@ RSpec.describe Omniauth::Rails::SessionsController do
       end
 
       it "redirects directly to the authenticated_root" do
-        get "/auth/sign_in"
+        get "#{OmniAuth.config.path_prefix}/sign_in"
         expect(response).to redirect_to(Omniauth::Rails::Configuration.authenticated_root)
       end
     end
@@ -30,7 +30,7 @@ RSpec.describe Omniauth::Rails::SessionsController do
 
       it "logs the user out" do
         expect(authenticated?).to eq(true)
-        delete "/auth/sign_out"
+        delete "#{OmniAuth.config.path_prefix}/sign_out"
         expect(authenticated?).to eq(false)
       end
 
@@ -43,7 +43,7 @@ RSpec.describe Omniauth::Rails::SessionsController do
         end
 
         it "renders some html saying you have been logged out" do
-          delete "/auth/sign_out"
+          delete "#{OmniAuth.config.path_prefix}/sign_out"
           expect(response).to have_http_status(:success)
         end
       end
@@ -59,8 +59,9 @@ RSpec.describe Omniauth::Rails::SessionsController do
       end
 
       it "redirects to /auth/failure?message=csrf_detected&strategy=google_oauth2" do
-        get "/auth/google_oauth2/callback"
-        expect(response).to redirect_to("/auth/failure?message=csrf_detected&strategy=google_oauth2")
+        get "#{OmniAuth.config.path_prefix}/google_oauth2/callback"
+        location = "#{OmniAuth.config.path_prefix}/failure?message=csrf_detected&strategy=google_oauth2"
+        expect(response).to redirect_to(location)
       end
     end
 
@@ -72,14 +73,15 @@ RSpec.describe Omniauth::Rails::SessionsController do
       end
 
       it "redirects to /auth/failure?message=invalid_credentials&strategy=google_oauth2" do
-        get "/auth/google_oauth2/callback"
-        expect(response).to redirect_to("/auth/failure?message=invalid_credentials&strategy=google_oauth2")
+        get "#{OmniAuth.config.path_prefix}/google_oauth2/callback"
+        location = "#{OmniAuth.config.path_prefix}/failure?message=invalid_credentials&strategy=google_oauth2"
+        expect(response).to redirect_to(location)
       end
     end
 
     context "a valid auth response" do
       it "redirects to Configuration.authenticated_root" do
-        get "/auth/google_oauth2/callback"
+        get "#{OmniAuth.config.path_prefix}/google_oauth2/callback"
         expect(response).to redirect_to(Omniauth::Rails::Configuration.authenticated_root)
       end
     end

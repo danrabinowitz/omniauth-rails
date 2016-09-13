@@ -24,9 +24,12 @@ RSpec.describe Omniauth::Rails::Configurator do
       let(:data) { required_data.merge("dev_mode" => true) }
 
       context "dev_mode is allowed" do
-        after do
+        around(:each) do |example|
+          path_prefix = OmniAuth.config.path_prefix
+          example.run
           # Put it back to the initial value
           Omniauth::Rails::Configuration.dev_mode = false
+          OmniAuth.config.path_prefix = path_prefix
         end
 
         it "sets Configuration.dev_mode = true" do

@@ -25,10 +25,7 @@ module Omniauth
       def configure
         validate!
 
-        OmniAuth.config.logger = ::Rails.logger
-        # TODO
-        # OmniAuth.config.path_prefix = "/auth"
-
+        configure_omni_auth_settings
         configure_providers
 
         Configuration.authenticated_root = authenticated_root
@@ -41,6 +38,11 @@ module Omniauth
       private
 
       attr_reader :data
+
+      def configure_omni_auth_settings
+        OmniAuth.config.logger = ::Rails.logger
+        OmniAuth.config.path_prefix = path_prefix
+      end
 
       def dev_mode
         data["dev_mode"] == true
@@ -60,6 +62,10 @@ module Omniauth
 
       def dev_mode_allowed?
         ::Rails.env.development?
+      end
+
+      def path_prefix
+        data["path_prefix"] || "/auth"
       end
 
       def authenticated_root

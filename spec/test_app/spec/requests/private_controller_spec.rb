@@ -8,7 +8,7 @@ RSpec.describe PrivateController do
     context "user is not authenticated" do
       it "redirects to the sign_in page" do
         get "/private"
-        expect(response).to redirect_to("/auth/sign_in")
+        expect(response).to redirect_to("#{OmniAuth.config.path_prefix}/sign_in")
       end
 
       context "dev_mode is enabled" do

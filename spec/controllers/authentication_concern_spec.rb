@@ -21,7 +21,7 @@ RSpec.describe Omniauth::Rails::AuthenticationConcern do
     before { get :fake_action }
 
     it "redirects" do
-      expect(response).to redirect_to("/auth/sign_in")
+      expect(response).to redirect_to("#{OmniAuth.config.path_prefix}/sign_in")
     end
 
     context "dev_mode is enabled" do
