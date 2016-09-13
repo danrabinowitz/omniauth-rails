@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/danrabinowitz/simplecov-console.git
+  revision: cfca8fc8638555d76ddf4b757fdde659353e9868
+  branch: add-table-options
+  specs:
+    simplecov-console (0.4.0)
+      ansi
+      hirb
+      simplecov
+
 PATH
   remote: .
   specs:
@@ -219,10 +229,6 @@ GEM
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
-    simplecov-console (0.3.1)
-      ansi
-      hirb
-      simplecov
     simplecov-html (0.10.0)
     sprockets (3.7.0)
       concurrent-ruby (~> 1.0)
@@ -263,7 +269,7 @@ DEPENDENCIES
   rspec-rails
   rubocop
   simplecov
-  simplecov-console
+  simplecov-console (= 0.4.0)!
 
 BUNDLED WITH
    1.13.0

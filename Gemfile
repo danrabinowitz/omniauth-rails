@@ -17,3 +17,6 @@ gem "overcommit"
 
 gem "codeclimate-test-reporter", group: :test, require: nil
 gem "mutant-rspec"
+
+gem "simplecov-console", "0.4.0", git: "https://github.com/danrabinowitz/simplecov-console.git",
+                                  branch: "add-table-options"

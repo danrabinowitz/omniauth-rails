@@ -21,6 +21,7 @@ Authorization is handled separately.
 
 ## TODO
 
+* Add a new AuthorizationType for groups of email addresses
 * Search for "TODO" in the code.
 * Run ```rake mutant``` and add all the specs.
 
