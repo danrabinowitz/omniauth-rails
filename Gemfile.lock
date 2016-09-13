@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    omniauth-rails (0.2.0)
+    omniauth-rails (0.3.0)
       omniauth
       rails (~> 5.0.0, >= 5.0.0.1)
 
@@ -272,4 +272,4 @@ DEPENDENCIES
   simplecov-console (= 0.4.0)!
 
 BUNDLED WITH
-   1.13.0
+   1.13.1
