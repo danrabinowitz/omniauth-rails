@@ -22,7 +22,9 @@ Authorization is handled separately.
 ## Usage
 
 1) Add the gem to your Gemfile
+```ruby
 gem 'omniauth-rails'
+```
 
 2) Add a config/omniauth_rails.yml with something like this:
 ```yml
@@ -48,6 +50,7 @@ production:
   authenticated_root: "/private"
   unauthenticated_root: "/public"
 ```
+
 3) In any controllers which you want to protect (such as an admin controller), add this line:
 ```ruby
 require_authorization domains: %w(mydomain.com)
