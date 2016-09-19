@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 module Omniauth
   module Rails
-    class SessionsController < ApplicationController
+    class SessionsController < ::Omniauth::Rails::ApplicationController
       include Omniauth::Rails::ApplicationHelper
       include Omniauth::Rails::Flash
 
