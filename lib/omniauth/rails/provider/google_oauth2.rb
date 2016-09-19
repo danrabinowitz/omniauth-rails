@@ -10,13 +10,31 @@ module Omniauth
           validate!
         end
 
+        def client_id
+          config["client_id"]
+        end
+
+        def client_secret
+          config["client_secret"]
+        end
+
+        def params
+          {
+            access_type: "online",
+            approval_prompt: "auto",
+            # prompt: "none", # none, consent, select_account
+          }
+        end
+
         def configure
-          client_id = config["client_id"]
-          client_secret = config["client_secret"]
-          prompt = "none" # none, consent, select_account
+          this_provider = self
           ::Rails.application.config.middleware.use OmniAuth::Builder do
-            provider(:google_oauth2, client_id, client_secret,
-                     access_type: "online", approval_prompt: "auto", prompt: prompt)
+            provider(
+              :google_oauth2,
+              this_provider.client_id,
+              this_provider.client_secret,
+              this_provider.params,
+            )
           end
         end
 
