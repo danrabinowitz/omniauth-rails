@@ -7,3 +7,4 @@ spec/test_app/tmp/
 /spec/examples.txt
 /coverage/
 /spec/test_app/.env
+/Gemfile.lock
