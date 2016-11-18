@@ -54,7 +54,7 @@ module Omniauth
           raise "#{setting} is required" unless send(setting).present?
         end
 
-        if dev_mode
+        if dev_mode # rubocop:disable Style/GuardClause
           raise "dev_mode may not be used in #{::Rails.env}" unless dev_mode_allowed?
           ::Rails.logger.info "Omniauth::Rails: dev_mode is enabled. Authentication and " \
                               "authorization are disabled."
