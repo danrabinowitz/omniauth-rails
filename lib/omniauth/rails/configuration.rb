@@ -6,6 +6,7 @@ module Omniauth
         authenticated_root include_concern_in_application_controller
         unauthenticated_root session_duration logger
         dev_mode automount
+        extra_keys_to_store_in_session
       ).freeze
 
       @session_duration = 1.hour

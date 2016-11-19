@@ -33,6 +33,7 @@ module Omniauth
         Configuration.unauthenticated_root = unauthenticated_root
         Configuration.include_concern_in_application_controller = include_concern_in_application_controller
         Configuration.session_duration = session_duration.seconds if session_duration.present?
+        Configuration.extra_keys_to_store_in_session = extra_keys_to_store_in_session
         Configuration.dev_mode = dev_mode
       end
 
@@ -91,6 +92,10 @@ module Omniauth
 
       def include_concern_in_application_controller
         data["autoload_in_application_controller"] != false
+      end
+
+      def extra_keys_to_store_in_session
+        data["extra_keys_to_store_in_session"] || %w(name image)
       end
 
       def configure_providers

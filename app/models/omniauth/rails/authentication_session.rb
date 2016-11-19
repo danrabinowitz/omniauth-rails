@@ -4,6 +4,7 @@ module Omniauth
     class AuthenticationSession
       EMAIL_KEY = "email"
       EXPIRE_AT_KEY = "expire_at"
+      EXTRA_KEYS = %w(name image).freeze
 
       def initialize(session)
         @session = session
@@ -12,6 +13,16 @@ module Omniauth
       end
 
       delegate :reset, to: :data_store
+
+      EXTRA_KEYS.each do |key|
+        define_method(key) do
+          data_store.get(key)
+        end
+
+        define_method("#{key}=") do |value|
+          data_store.set(key, value)
+        end
+      end
 
       def authenticated?
         email.present?
