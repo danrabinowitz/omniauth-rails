@@ -2,7 +2,7 @@
 module Omniauth
   module Rails
     class Configurator
-      REQUIRED_SETTINGS = %i(providers authenticated_root unauthenticated_root).freeze
+      REQUIRED_SETTINGS = %i(providers authenticated_root).freeze
 
       def self.default_config_file
         "#{::Rails.root}/config/omniauth_rails.yml"
