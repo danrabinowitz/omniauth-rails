@@ -5,8 +5,6 @@
 ::Omniauth::Rails.send(:remove_const, "VERSION")
 $LOADED_FEATURES.delete_if { |s| s.include?("omniauth/rails/version") }
 
-require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
 require "simplecov"
 require "byebug"
 require "awesome_print" # Useful for debugging
